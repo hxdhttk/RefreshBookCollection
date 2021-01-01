@@ -31,7 +31,10 @@ let run () =
         |> Seq.iter (fun book ->
             let bookFileInfo = book |> FileInfo
             let bookNewPath = Path.Combine(newDir.FullName, bookFileInfo.Name)
-            bookFileInfo.MoveTo(bookNewPath))
+            if not (File.Exists(bookNewPath)) then
+                bookFileInfo.MoveTo(bookNewPath)
+            else
+                printfn $"Existing book: {bookNewPath}")
         )
 
 run ()
