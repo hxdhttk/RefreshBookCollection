@@ -3,7 +3,7 @@ Push-Location $PSScriptRoot
 $booksSrc = ""
 
 $updated = $false
-[array]$newBooks = Get-ChildItem $booksSrc 
+[array]$newBooks = Get-ChildItem $booksSrc -Filter "*.cbz"
 if ($newBooks.Length -gt 0) {
     Write-Host "New books:"
     foreach ($newBook in $newBooks) {
@@ -24,3 +24,5 @@ else {
 }
 
 Pop-Location
+
+Read-Host
